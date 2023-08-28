@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+    <header class="content" th:fragment="header">
+        <div class="fragments-header-text mt-2" style="text-align: center">
+            <h1>ZADANIA</h1>
+        </div>
+
+    </header>
+
+    <div th:fragment="options" class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <a href="/add" class="link-offset-3 link-underline-opacity-35 link-underline-opacity-100-hover fs-5">Dodaj</a>
+        <a href="/list" class="link-offset-3 link-underline-opacity-35 link-underline-opacity-100-hover fs-5">Wyświetl wszystkie</a>
+    </div>
+
+</body>
+</html>

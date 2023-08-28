@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title th:text="(${task.id} == null) ? 'Dodaj Zadanie' : 'Modyfikuj Zadanie'"></title>
+</head>
+<body>
+<main layout:fragment="content">
+  <div class="contactForm" th:fragment="contact">
+    <h2 style="margin-top: 25px" th:text="(${task.id} == null) ? 'Dodaj Zadanie' : 'Modyfikuj Zadanie'"></h2>
+    <form  action="/save" th:object="${task}" method="post">
+      <input type="hidden" th:field="*{id}">
+      <div class="mb-3">
+        <label for="taskTitle" class="form-label" >Tytuł zadania</label>
+        <textarea  th:field="*{taskTitle}"  class="form-control" id="taskTitle" rows="1" cols="25"
+                   placeholder="Tytuł zadnia np. dodanie pamięci" maxlength="200" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Opis zadania</label>
+        <textarea  th:field="*{description}"  class="form-control" id="description" rows="4" cols="50"
+                   placeholder="Opis zadnia np. dodanie pamięci GIGABYTE 8Gb DDR4  566HBKIUU-22B" required></textarea>
+      </div>
+      <div class="mb-2 w-25">
+        <label for="taskDeadLine"  class="form-label" >Termin</label>
+        <input type="date"  th:field="*{taskDeadLine}"
+        class="form-control" id="taskDeadLine" required >
+      </div>
+      <label for="taskStatus">Wybierz typ transakcji</label>
+      <select th:field="*{taskStatus}" th:style="*{taskStatus != null}" id="taskStatus" class="form-select form-select-sm mb-2 w-25 fs-5 fw-bold"
+              aria-label="Small select example" required>
+        <option value="">Status zadania</option>
+        <option name="Status zadania"
+                th:each="status: ${T(com.temat25zad1.TaskStatus).values()}"
+                th:value="${status.name()}"
+                th:text="${status.getDescription()}" th:style="|color: ${status.getStatusColor()}|"
+        ></option>
+      </select>
+      <button type="submit" class="btn btn-primary">Zapisz</button>
+    </form>
+  </div>
+</main>
+</body>
+</html>

@@ -14,8 +14,8 @@
             <label for="sort_by">Sortuj według: </label>
             <a th:each="status : ${T(com.temat25zad1.TaskStatus).values()}"
                th:text="${status.getDescription()}"
-               th:href="|/listbystatus?status=${status.name()}|"
-               th:style="${status.getStatusColor()}"
+               th:href="|/list?status=${status.name()}|"
+               th:style="|color: ${status.getStatusColor()}|"
                class="link-offset-3 link-underline-opacity-35 link-underline-opacity-100-hover "
                 id="sort_by"
             ></a>
@@ -42,7 +42,7 @@
                 <td>
                     <a th:href="|/updateById?id=*{task.id}|" class="btn btn-primary"
                        role="button" aria-disabled="true">Modyfikuj</a>
-                    <a th:href="|/deletebyid?id=*{task.id}&status=${task.taskStatus.name()}|" class="btn btn-danger"
+                    <a th:href="|/deletebyid?id=*{task.id}&status=*{task.taskStatus}|" class="btn btn-danger"
                        onclick="return confirm('Czy na pewno chcesz usunąć tę transakcję', )"
                        role="button" aria-disabled="true">Usuń</a>
                     <a th:if="${!task.taskStatus.name().equals('DONE')}" th:href="|setdone?id=${task.id}|" class="btn btn-success"
