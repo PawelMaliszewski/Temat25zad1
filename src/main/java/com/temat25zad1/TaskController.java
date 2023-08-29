@@ -54,7 +54,6 @@ public class TaskController {
     public String saveTransaction(@RequestParam int id, Model model) {
         Optional<Task> task = taskRepository.findById((long) id);
         task.ifPresent(value -> model.addAttribute("task", task.get()));
-        task.ifPresent(value -> model.addAttribute("localDate", value.getTaskDeadLine()));
         return "add";
     }
 

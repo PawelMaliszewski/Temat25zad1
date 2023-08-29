@@ -7,7 +7,6 @@
 </head>
 <body>
 <main layout:fragment="content">
-  <div class="contactForm" th:fragment="contact">
     <h2 style="margin-top: 25px" th:text="(${task.id} == null) ? 'Dodaj Zadanie' : 'Modyfikuj Zadanie'"></h2>
     <form  action="/save" th:object="${task}" method="post">
       <input type="hidden" th:field="*{id}">
@@ -38,7 +37,6 @@
       </select>
       <button type="submit" class="btn btn-primary">Zapisz</button>
     </form>
-  </div>
 </main>
 </body>
 </html>
